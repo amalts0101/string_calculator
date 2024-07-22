@@ -23,5 +23,19 @@ RSpec.describe StringCalculator do
         expect(subject.add("20")).to eq(20)
       end
     end
+
+    context "2 numbers" do
+      it "returns 5 for 2,3" do
+        expect(subject.add("2,3")).to eq(5)
+      end
+
+      it "returns 6 for 3,3" do
+        expect(subject.add("3,3")).to eq(6)
+      end
+
+      it "returns 22 for 20,2" do
+        expect(subject.add("20,2")).to eq(22)
+      end
+    end
   end
 end
