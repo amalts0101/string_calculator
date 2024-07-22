@@ -51,5 +51,29 @@ RSpec.describe StringCalculator do
         expect(subject.add("3,3,3,3,3")).to eq(15)
       end
     end
+
+    context "newline as delimiter" do
+      it "returns 5 for 1\n4" do
+        expect(subject.add("1\n4")).to eq(5)
+      end
+
+      it "returns 10 for 5\n5" do
+        expect(subject.add("5\n5")).to eq(10)
+      end
+
+      it "returns 35 for 5\n10,20" do
+        expect(subject.add("5\n10,20")).to eq(35)
+      end
+    end
+
+    context "mixed delimiters" do
+      it "returns 8 for 2\n1\n5" do
+        expect(subject.add("2\n1\n5")).to eq(8)
+      end
+
+      it "returns 55 for 5\n10\n20\n20" do
+        expect(subject.add("5\n10\n20\n20")).to eq(55)
+      end
+    end
   end
 end

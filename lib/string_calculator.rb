@@ -1,8 +1,11 @@
 class StringCalculator
   def self.add(str_nums)
     return 0 if str_nums.empty?
-    return str_nums.to_i unless str_nums.include?(',')
-    digits = str_nums.split(',').map(&:to_i)
-    digits.sum
+    digits(str_nums).sum
+  end
+
+  def self.digits(str_nums)
+    delimiter = ","
+    str_nums.gsub("\n", delimiter).split(",").map(&:to_i)
   end
 end
