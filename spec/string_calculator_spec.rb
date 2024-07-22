@@ -99,5 +99,19 @@ RSpec.describe StringCalculator do
         expect { subject.add("-4,2,-5") }.to raise_error("Negative numbers are not allowed: -4,-5")
       end
     end
+
+    context "numbers greater than 1000" do
+      it "ignores number 1000 for 3\n1005" do
+        expect(subject.add("3\n1005")).to eq(3)
+      end
+
+      it "ignores number 1000 for 5\n1010" do
+        expect(subject.add("5\n1005")).to eq(5)
+      end
+
+      it "ignores number 1000 for 15\n2000" do
+        expect(subject.add("15\n2000")).to eq(15)
+      end
+    end
   end
 end

@@ -2,7 +2,9 @@ class StringCalculator
   def self.add(str_nums)
     return 0 if str_nums.empty?
     raise_negative_nmbr_error(str_nums)
-    digits(str_nums).sum
+
+    digits = digits(str_nums).reject {|num| num > 1000}
+    digits.sum
   end
 
   def self.raise_negative_nmbr_error(str_nums)
