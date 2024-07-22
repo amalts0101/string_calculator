@@ -37,5 +37,19 @@ RSpec.describe StringCalculator do
         expect(subject.add("20,2")).to eq(22)
       end
     end
+
+    context "unknown amount of numbers" do
+      it "returns 10 for 5,3,2" do
+        expect(subject.add("5,3,2")).to eq(10)
+      end
+
+      it "returns 40 for 10,10,10,10" do
+        expect(subject.add("10,10,10,10")).to eq(40)
+      end
+
+      it "returns 15 for 3,3,3,3,3" do
+        expect(subject.add("3,3,3,3,3")).to eq(15)
+      end
+    end
   end
 end
