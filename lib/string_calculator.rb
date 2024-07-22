@@ -14,10 +14,19 @@ class StringCalculator
 
   def self.digits(str_nums)
     delimiter = get_delimiter(str_nums)
-    str_nums.gsub("\n", delimiter).split(delimiter).map(&:to_i)
+    str_nums.split(/#{delimiter}/).map(&:to_i)
   end
 
   def self.get_delimiter(str_nums)
-    str_nums[0,2] == '//' ? str_nums[2,1] : ','
+    delimiter = /,|\n/
+    if str_nums.start_with?('//')
+      header, numbers = str_nums.split("\n", 2)
+      if header.match?(/\/\/\[(.+)\]/)
+        delimiter = Regexp.escape(header.match(/\/\/\[(.+)\]/)[1])
+      else
+        delimiter = Regexp.escape(header[2])
+      end
+    end
+    delimiter
   end
 end
