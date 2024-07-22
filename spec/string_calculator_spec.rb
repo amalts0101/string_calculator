@@ -75,5 +75,19 @@ RSpec.describe StringCalculator do
         expect(subject.add("5\n10\n20\n20")).to eq(55)
       end
     end
+
+    context "support different delimiters" do
+      it "returns 4 for //;\n1;2;1" do
+        expect(subject.add("//;\n1;2;1")).to eq(4)
+      end
+
+      it "returns 11 for //:\n4:5:2" do
+        expect(subject.add("//:\n4:5:2")).to eq(11)
+      end
+
+      it "returns 60 for //.\n10.20.30" do
+        expect(subject.add("//.\n10.20.30")).to eq(60)
+      end
+    end
   end
 end

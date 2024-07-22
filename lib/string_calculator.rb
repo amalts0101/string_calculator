@@ -5,7 +5,11 @@ class StringCalculator
   end
 
   def self.digits(str_nums)
-    delimiter = ","
-    str_nums.gsub("\n", delimiter).split(",").map(&:to_i)
+    delimiter = get_delimiter(str_nums)
+    str_nums.gsub("\n", delimiter).split(delimiter).map(&:to_i)
+  end
+
+  def self.get_delimiter(str_nums)
+    str_nums[0,2] == '//' ? str_nums[2,1] : ','
   end
 end
