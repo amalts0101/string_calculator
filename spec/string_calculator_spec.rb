@@ -89,5 +89,15 @@ RSpec.describe StringCalculator do
         expect(subject.add("//.\n10.20.30")).to eq(60)
       end
     end
+
+    context "raise error if negative values are passed" do
+      it "raises error for -4" do
+        expect { subject.add("-4") }.to raise_error("Negative numbers are not allowed: -4")
+      end
+
+      it "raises error for -4,2,-5" do
+        expect { subject.add("-4,2,-5") }.to raise_error("Negative numbers are not allowed: -4,-5")
+      end
+    end
   end
 end
