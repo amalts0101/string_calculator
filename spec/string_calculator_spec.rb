@@ -113,5 +113,25 @@ RSpec.describe StringCalculator do
         expect(subject.add("15\n2000")).to eq(15)
       end
     end
+
+    context "delimiters of any length" do
+      it "returns 6 for //[***]\n1***2***3" do
+        expect(subject.add("//[***]\n1***2***3")).to eq(6)
+      end
+
+      it "returns 8 for //[**]\n3**2**3" do
+        expect(subject.add("//[**]\n3**2**3")).to eq(8)
+      end
+    end
+
+    context "support multiple delimiters" do
+      it "returns 6 for //[*][%]\n1*2%3" do
+        expect(subject.add("//[*][%]\n1*2%3")).to eq(6)
+      end
+
+      it "returns 10 for //[*][%]\n6*2%2" do
+        expect(subject.add("//[*][%]\n6*2%2")).to eq(10)
+      end
+    end
   end
 end
